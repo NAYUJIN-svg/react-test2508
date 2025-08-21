@@ -1,0 +1,520 @@
+/* 기본 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', Arial, sans-serif;
+  color: #333333;
+  line-height: 1.6;
+}
+
+.app {
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* Header */
+.header {
+  background-color: #2c5530;
+  position: relative;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.logo img {
+  height: 60px;
+  filter: brightness(0) invert(1);
+}
+
+.navigation {
+  position: relative;
+}
+
+.main-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item {
+  position: relative;
+  margin: 0 20px;
+}
+
+.menu-link {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 15px 10px;
+  display: block;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.menu-link:hover,
+.menu-link:focus {
+  background-color: #3a6b3e;
+  color: #ffeb3b;
+}
+
+.sub-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  min-width: 180px;
+  list-style: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sub-menu-link {
+  color: #333333;
+  text-decoration: none;
+  padding: 12px 20px;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.sub-menu-link:hover,
+.sub-menu-link:focus {
+  background-color: #2c5530;
+  color: #ffffff;
+}
+
+/* Slide */
+.slide-section {
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-container {
+  height: 100%;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.slide-content {
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+
+.slide-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.slide-subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Contents */
+.contents {
+  padding: 80px 0;
+  background-color: #f8f9fa;
+}
+
+.contents-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #2c5530;
+  border-bottom: 3px solid #2c5530;
+  padding-bottom: 10px;
+}
+
+/* 공지사항 */
+.notice-section {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.notice-list {
+  list-style: none;
+}
+
+.notice-item {
+  border-bottom: 1px solid #e9ecef;
+  padding: 15px 0;
+}
+
+.notice-item:last-child {
+  border-bottom: none;
+}
+
+.notice-link {
+  text-decoration: none;
+  color: #333333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.notice-link:hover,
+.notice-link:focus {
+  color: #2c5530;
+  transform: translateX(5px);
+}
+
+.notice-title {
+  font-weight: 500;
+  flex: 1;
+}
+
+.notice-date {
+  font-size: 0.9rem;
+  color: #666;
+  margin-left: 10px;
+}
+
+/* 갤러리 */
+.gallery-section {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.gallery-item {
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+
+.gallery-item:hover img,
+.gallery-item:focus img {
+  opacity: 0.7;
+  transform: scale(1.05);
+}
+
+/* 배너 */
+.banner-section {
+  display: flex;
+  align-items: stretch;
+}
+
+.banner {
+  background: linear-gradient(135deg, #2c5530, #3a6b3e);
+  color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.banner h4 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.banner p {
+  margin-bottom: 25px;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.banner-btn {
+  background-color: #ffeb3b;
+  color: #2c5530;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.banner-btn:hover,
+.banner-btn:focus {
+  background-color: #fff176;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+.footer {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding: 40px 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.footer-logo {
+  margin-bottom: 20px;
+}
+
+.footer-logo img {
+  height: 50px;
+}
+
+.grayscale {
+  filter: grayscale(100%);
+}
+
+.footer-menu {
+  margin-bottom: 20px;
+}
+
+.footer-menu a {
+  color: #cccccc;
+  text-decoration: none;
+  margin: 0 15px;
+  transition: color 0.3s ease;
+}
+
+.footer-menu a:hover,
+.footer-menu a:focus {
+  color: #ffffff;
+}
+
+.copyright p {
+  margin-bottom: 5px;
+  color: #999999;
+  font-size: 0.9rem;
+}
+
+/* 팝업 */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.popup {
+  background-color: #ffffff;
+  max-width: 600px;
+  width: 90%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: popupShow 0.3s ease;
+}
+
+@keyframes popupShow {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.popup-header {
+  background-color: #2c5530;
+  color: #ffffff;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.popup-content {
+  padding: 30px;
+  line-height: 1.8;
+}
+
+.popup-content p {
+  margin-bottom: 15px;
+}
+
+/* 접근성 및 포커스 스타일 */
+a:focus,
+button:focus {
+  outline: 2px solid #ffeb3b;
+  outline-offset: 2px;
+}
+
+*:focus {
+  outline: 2px solid #2c5530;
+  outline-offset: 2px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    padding: 15px;
+  }
+
+  .logo {
+    margin-bottom: 15px;
+  }
+
+  .main-menu {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .menu-item {
+    margin: 0;
+    text-align: center;
+  }
+
+  .sub-menu {
+    position: static;
+    box-shadow: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    animation: none;
+  }
+
+  .slide-title {
+    font-size: 2rem;
+  }
+
+  .slide-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .contents-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 15px;
+  }
+
+  .footer-menu a {
+    display: block;
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-title {
+    font-size: 1.5rem;
+  }
+
+  .slide-subtitle {
+    font-size: 1rem;
+  }
+
+  .popup {
+    width: 95%;
+  }
+
+  .popup-header {
+    padding: 15px 20px;
+  }
+
+  .popup-content {
+    padding: 20px;
+  }
+}
