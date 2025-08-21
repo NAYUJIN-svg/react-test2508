@@ -4,27 +4,43 @@ import Slide from './components/Slide';
 import Footer from './components/Footer';
 import './styles/App.css';
 
+// 임시 테스트용 온라인 이미지 (파일이 없을 경우 사용)
+// import slide1 from './assets/images/slide1.jpg';
+// import slide2 from './assets/images/slide2.jpg';
+// import slide3 from './assets/images/slide3.jpg';
+// import gallery1 from './assets/images/gallery1.jpg';
+// import gallery2 from './assets/images/gallery2.jpg';
+// import gallery3 from './assets/images/gallery3.jpg';
+
+// 임시 이미지 URL
+const slide1 = 'https://picsum.photos/1200/500?random=1';
+const slide2 = 'https://picsum.photos/1200/500?random=2';
+const slide3 = 'https://picsum.photos/1200/500?random=3';
+const gallery1 = 'https://picsum.photos/400/300?random=4';
+const gallery2 = 'https://picsum.photos/400/300?random=5';
+const gallery3 = 'https://picsum.photos/400/300?random=6';
+
 const App = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
 
-  // 슬라이드 데이터 - 실제 이미지 사용
+  // 슬라이드 데이터 (import한 이미지 사용)
   const slides = [
     {
       id: 1,
-      image: '/images/slide1.jpg', // 남도 전통음식 사진
+      image: slide1,  // import한 이미지 사용
       title: '남도의 맛을 만나다',
       subtitle: '전통 음식의 진수를 경험하세요'
     },
     {
       id: 2,
-      image: '/images/slide2.jpg', // 축제 현장 사진
+      image: slide2,  // import한 이미지 사용
       title: '축제의 흥겨움',
       subtitle: '민속놀이와 공연이 어우러진 축제'
     },
     {
       id: 3,
-      image: '/images/slide3.jpg', // 요리 경연대회 사진
+      image: slide3,  // import한 이미지 사용
       title: '요리경연대회',
       subtitle: '최고의 요리사들이 펼치는 경연'
     }
@@ -38,26 +54,11 @@ const App = () => {
     { id: 4, title: '전시 부스 임대 안내', date: '2025-08-17' }
   ];
 
-  // 갤러리 이미지 - 실제 이미지 사용
+  // 갤러리 이미지 (import한 이미지 사용)
   const galleryImages = [
-    {
-      id: 1,
-      image: '/images/gallery1.jpg',
-      title: '전통 한식 요리',
-      alt: '남도 전통 한식 요리 사진'
-    },
-    {
-      id: 2,
-      image: '/images/gallery2.jpg', 
-      title: '축제 현장',
-      alt: '남도맛기행 축제 현장 사진'
-    },
-    {
-      id: 3,
-      image: '/images/gallery3.jpg',
-      title: '요리 경연대회',
-      alt: '요리 경연대회 현장 사진'
-    }
+    gallery1,  // import한 이미지 사용
+    gallery2,
+    gallery3
   ];
 
   // 슬라이드 자동 전환
@@ -79,20 +80,6 @@ const App = () => {
     setShowPopup(false);
   };
 
-  // ESC 키로 팝업 닫기
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        closePopup();
-      }
-    };
-
-    if (showPopup) {
-      document.addEventListener('keydown', handleKeyDown);
-      return () => document.removeEventListener('keydown', handleKeyDown);
-    }
-  }, [showPopup]);
-
   return (
     <div className="app">
       <Header />
@@ -110,10 +97,7 @@ const App = () => {
                   <a 
                     href="#" 
                     className="notice-link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (index === 0) openPopup();
-                    }}
+                    onClick={index === 0 ? openPopup : undefined}
                   >
                     <span className="notice-title">{notice.title}</span>
                     <span className="notice-date">{notice.date}</span>
@@ -127,16 +111,9 @@ const App = () => {
           <div className="gallery-section">
             <h3 className="section-title">사진갤러리</h3>
             <div className="gallery-grid">
-              {galleryImages.map((item) => (
-                <div key={item.id} className="gallery-item">
-                  <img 
-                    src={item.image} 
-                    alt={item.alt}
-                    className="gallery-image"
-                  />
-                  <div className="gallery-overlay">
-                    <span className="gallery-title">{item.title}</span>
-                  </div>
+              {galleryImages.map((image, index) => (
+                <div key={index} className="gallery-item">
+                  <img src={image} alt={`갤러리 이미지 ${index + 1}`} />
                 </div>
               ))}
             </div>
@@ -147,7 +124,7 @@ const App = () => {
             <div className="banner">
               <h4>2025 남도맛기행 축제</h4>
               <p>전통과 현대가 만나는 특별한 축제</p>
-              <a href="#" className="banner-btn" onClick={(e) => e.preventDefault()}>참가신청</a>
+              <a href="#" className="banner-btn">참가신청</a>
             </div>
           </div>
         </div>
@@ -157,8 +134,8 @@ const App = () => {
 
       {/* 레이어 팝업 */}
       {showPopup && (
-        <div className="popup-overlay" onClick={closePopup}>
-          <div className="popup" onClick={(e) => e.stopPropagation()}>
+        <div className="popup-overlay">
+          <div className="popup">
             <div className="popup-header">
               <h3>2025년 남도맛기행 축제 개최 안내</h3>
               <button className="close-btn" onClick={closePopup}>×</button>
